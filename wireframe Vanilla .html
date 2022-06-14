@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" href="src/styles.css">
+
+
+
+</head>
+
+<body>
+
+    <div class="wireframe">
+
+
+        <div class="city">
+
+            <p class="top-link">Kiev</p>
+            <p class="top-link">Lviv</p>
+            <p class="top-link">Odessa</p>
+
+        </div>
+
+        <div>
+            <input type="search" id="GiveCity" onfocus="this.value=''" value="Enter your city">
+            </input>
+
+
+            <input type="submit" id="Search" value="Search">
+            </input>
+
+        </div>
+
+        <div class="forecast">
+            <div class="weather">
+
+                <p>
+                    <span id="chooseCelsius">17</span>
+                    <a href="#" id="celsius-link"> °C</a> |
+                    <a href="#" id="fahrenheit-link"> °F </a> <span class="cloud"> ☁</span>
+                </p>
+                <p id="CityName">
+                    Kiev
+                </p>
+                <p id="CurrentData">
+                    Mon 3
+                </p>
+
+            </div>
+
+
+
+
+
+            <div class="days">
+
+
+
+                <p> Monday <span class="cloud"> ☁</span>
+                </p>
+                <p>
+                    Tuesday
+                    <span class="sun"> ☀</span>
+                </p>
+                <p>
+                    Wednesday<span class="sun"> ☀</span>
+                </p>
+                Tursday<span class="sun"> ☀</span>
+                </p>
+
+
+
+
+            </div>
+        </div>
+
+        <a href="https://uk.wikipedia.org/wiki/%D0%A4%D1%83%D1%80%D1%81">
+            <em> By Furs Olga</em></a>
+
+    </div>
+
+
+    <script>
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        currentDate = new Date();
+
+        let currentMonth = months[currentDate.getMonth()];
+        let currentHour = currentDate.getHours();
+        let currentMinutes = currentDate.getMinutes();
+
+        current_date = document.getElementById('CurrentData')
+        current_date.innerHTML = currentMonth + ' ' + currentHour + ':' + currentMinutes
+
+
+
+        function enterCity(event) {
+            let searchCity = document.getElementById("GiveCity");
+            let city_name = document.getElementById("CityName");
+            city_name.innerHTML = searchCity.value;
+        }
+        let search = document.getElementById("Search");
+        search.addEventListener("click", enterCity);
+
+
+
+        /*convert temparature*/
+        chooseCelsius = document.getElementById("chooseCelsius");
+        gradus = Number(chooseCelsius.innerHTML);
+        celsius_select = true;
+
+        function celsius_to_fahrenheit(event) {
+            if (celsius_select == false) {
+                res = ((gradus + 40) * 1.8) - 40;
+                chooseCelsius.innerHTML = Math.ceil(res);
+                celsius_select = true;
+            }
+        }
+
+        function fahrenheit_to_celsius(event) {
+            if (celsius_select == true) {
+
+                res = ((gradus + 40) / 1.8) - 40;
+                chooseCelsius.innerHTML = Math.ceil(res);
+                celsius_select = false;
+            }
+        }
+
+        let celsius = document.getElementById("celsius-link");
+        celsius.addEventListener("click", celsius_to_fahrenheit);
+        let fahrenheit = document.getElementById("fahrenheit-link");
+        fahrenheit.addEventListener("click", fahrenheit_to_celsius);
+
+        function displaySearchedCityDate(response) {
+            console.log(response);
+            let currentCity = document.querySelector("#current-city");
+            currentCity.innerHTML = response.data.name;
+
+            let temperature = document.querySelector("#display-temperature");
+            let temp = Math.round(response.data.main.temp);
+            temperature.innerHTML = temp;
+
+            let description = document.querySelector(".weather-description");
+            description.innerHTML = response.data.weather[0].description;
+
+            let humidity = document.querySelector(".humidity");
+            humidity.innerHTML = Humidity: $ {
+                response.data.main.humidity
+            } % ;
+
+            wind = document.querySelector(".wind");
+            let windSpeed = Math.round(response.data.wind.speed);
+            wind.innerHTML = Wind: $ {
+                windSpeed
+            }
+            mph;
+        }
+
+        showCurrentPosition(position) {
+            // console.log(position.coords.latitude);
+            // console.log(position.coords.longitude);
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            let apiKey = "f7dffd4359849bb28c77fa4fe304c30f";
+            let unit = "metric";
+            let apiUrl = https: //api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit};
+                axios.get(apiUrl).then(displaySearchedCityDate);
+        }
+
+        let searchButton = document.querySelector("button");
+        searchButton.addEventListener("click", search);
+    </script>
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>
