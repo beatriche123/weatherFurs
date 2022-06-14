@@ -1,0 +1,85 @@
+.wireframe {
+    border: 1px solid #20b391;
+    font-size: 25px;
+    width: 425px;
+    height: 425px;
+    background-color: blanchedalmond;
+    color: black;
+    font-size: 16px;
+    display: block;
+    margin: 60px auto;
+    line-height: 22px;
+    padding: 24px 24px;
+    text-decoration: none;
+    transition: all 200ms ease;
+    box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+}
+
+.forecast {
+    display: flex;
+}
+
+.city {
+    display: flex;
+    text-align: center;
+    color: #20b391;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.top-link {
+    padding: 5px;
+}
+
+.input {
+    border-radius: 25px;
+    border: 1px solid #20b391;
+    background: #d9e40d;
+    color: #20b391;
+    font-size: 16px;
+    display: flex;
+    top-link margin: 0 auto;
+    line-height: 22px;
+    padding: 16px 24px;
+    ;
+    text-decoration: none;
+    transition: all 200ms ease;
+    box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+}
+
+.button {
+    cursor: pointer;
+    background: white;
+}
+
+.weather p {
+    text-align: left;
+    font-size: 22px;
+    line-height: 28px;
+}
+
+.weather {
+    width: 50%;
+}
+
+.days {
+    text-align: right;
+    width: 50%;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.sun {
+    color: #d9e40d;
+    font-size: 32px;
+}
+
+.cloud {
+    color: aqua;
+    font-size: 32px;
+}
+
+a {
+    cursor: pointer;
+    color: #20b391;
+}
