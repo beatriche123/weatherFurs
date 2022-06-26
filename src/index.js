@@ -1,3 +1,8 @@
+let chooseCelsius = document.getElementById("chooseCelsius");
+var gradus = Number(chooseCelsius.innerHTML);
+var celsius_select = true;
+currect_gradus = chooseCelsius.innerHTML;
+
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var currentDate = new Date();
 
@@ -17,12 +22,14 @@ function getJSON(url) {
         city_name.innerHTML = myObj.name;
         let celsius = document.getElementById("chooseCelsius");
         celsius.innerHTML = Math.ceil(Number(myObj.main.temp) - 273.15);
+        currect_gradus = Math.ceil(Number(myObj.main.temp) - 273.15);
         let wind_speed = document.getElementById("Wind");
         wind_speed.innerHTML = myObj.wind.speed;
         let CurrentDescription = document.getElementById("CurrentDescription");
         CurrentDescription.innerHTML = myObj.weather[0].description;
         let Humidity = document.getElementById("Humidity");
         Humidity.innerHTML = myObj.main.humidity;
+
 
         return myObj
     }
@@ -46,23 +53,24 @@ search.addEventListener("click", enterCity);
 
 
 /*convert temparature*/
-let chooseCelsius = document.getElementById("chooseCelsius");
-var gradus = Number(chooseCelsius.innerHTML);
-var celsius_select = true;
-
 function celsius_to_fahrenheit(event) {
     if (celsius_select == false) {
-        res = ((gradus + 40) * 1.8) - 40;
-        chooseCelsius.innerHTML = Math.ceil(res);
+        currect_gradus = (currect_gradus * (9 / 5)) + 32
+        chooseCelsius.innerHTML = Math.ceil(currect_gradus);
         celsius_select = true;
     }
 }
 
 function fahrenheit_to_celsius(event) {
     if (celsius_select == true) {
-
-        res = ((gradus + 40) / 1.8) - 40;
-        chooseCelsius.innerHTML = Math.ceil(res);
+        currect_gradus = (currect_gradus - 32) * (5 / 9)
+        chooseCelsius.innerHTML = Math.ceil(currect_gradus);
         celsius_select = false;
     }
 }
+
+
+let celsius = document.getElementById("celsius-link");
+celsius.addEventListener("click", celsius_to_fahrenheit);
+let fahrenheit = document.getElementById("fahrenheit-link");
+fahrenheit.addEventListener("click", fahrenheit_to_celsius);
